@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id ("kotlin-kapt")
+    id ("com.google.dagger.hilt.android") version "2.51"
 }
 
 android {
@@ -42,6 +43,15 @@ android {
 
 dependencies {
 
+    //crypto
+
+    implementation ("androidx.security:security-crypto-ktx:1.1.0-alpha06")
+
+
+    //Gson
+
+    implementation ("com.google.code.gson:gson:2.10.1")
+
 //Glide
     implementation ("com.github.bumptech.glide:glide:4.14.2")
 
@@ -54,6 +64,11 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation  ("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+
+    //hilt
+    implementation ("com.google.dagger:hilt-android:2.51")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    kapt ("com.google.dagger:hilt-compiler:2.51")
 
 // android
     implementation ("androidx.fragment:fragment-ktx:1.6.2")
