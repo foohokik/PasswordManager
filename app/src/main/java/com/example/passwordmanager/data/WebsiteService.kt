@@ -11,4 +11,11 @@ class WebsiteService @Inject constructor() {
     fun getWebsites(): List<Website> {
         return websitesList
     }
+
+    fun setWebsite(website: Website): List<Website> {
+
+        return  websitesList.plus(website)
+
+    }
+
 }

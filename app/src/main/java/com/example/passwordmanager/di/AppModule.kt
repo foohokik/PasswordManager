@@ -2,6 +2,8 @@ package com.example.passwordmanager.di
 
 import android.content.SharedPreferences
 import com.example.passwordmanager.data.EncryptedSharedPreferencesManager
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,6 +20,10 @@ object AppModule {
     fun provideSharedPrefs (
         encryptedSharedPrefs: EncryptedSharedPreferencesManager
     ):SharedPreferences = encryptedSharedPrefs.getSharedPrefs()
+
+    @Provides
+    @Singleton
+    fun provideGson(): Gson = GsonBuilder().create()
 
 
 }
