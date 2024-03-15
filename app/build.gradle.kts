@@ -19,6 +19,10 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    hilt {
+        enableAggregatingTask = false
+    }
+
     buildFeatures {
         viewBinding = true
     }

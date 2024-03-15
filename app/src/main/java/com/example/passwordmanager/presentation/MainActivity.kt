@@ -5,7 +5,9 @@ import android.os.Bundle
 import com.example.passwordmanager.R
 import com.example.passwordmanager.databinding.ActivityMainBinding
 import com.example.passwordmanager.presentation.show_websites.WebsitesListFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

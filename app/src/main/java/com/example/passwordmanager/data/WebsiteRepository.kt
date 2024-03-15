@@ -26,7 +26,7 @@ class WebsiteRepository @Inject constructor (
 
     fun getWebsites (masterKey: String): List<Website> {
 
-        val value = encryptedSharedPrefs.getString(masterKey,"")
+        val value = encryptedSharedPrefs.getString(masterKey,"[]")
         val type: Type = object : TypeToken<ArrayList<Website?>?>() {}.type
         return gson.fromJson(value, type)
 

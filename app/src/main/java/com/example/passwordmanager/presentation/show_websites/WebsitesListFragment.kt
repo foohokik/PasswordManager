@@ -1,6 +1,7 @@
 package com.example.passwordmanager.presentation.show_websites
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +9,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.passwordmanager.R
 import com.example.passwordmanager.data.Website
 import com.example.passwordmanager.databinding.FragmentWebsitesListBinding
 import com.example.passwordmanager.presentation.show_websites.adapter.WebSitesAdapter
-import dagger.hilt.EntryPoint
+import com.example.passwordmanager.presentation.website.WebsiteDetailFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -38,6 +40,21 @@ class WebsitesListFragment : Fragment() {
 
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initViews()
+        observe()
+        binding.btnAdd.setOnClickListener {
+            Log.d("TRANS", "BTN")
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container_view, WebsiteDetailFragment.newInstance(Website("","","","")))
+                .addToBackStack(null)
+                .commit()
+        }
+
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -60,11 +77,16 @@ class WebsitesListFragment : Fragment() {
 
         val sideEffectObserver = Observer<Website> {
 
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container_view, WebsiteDetailFragment.newInstance(it))
+                .addToBackStack(null)
+                .commit()
 
         }
 
-        viewModel.websitesLiveData.observe(this, listObserver)
-        viewModel.sideEffectLiveData.observe(this, sideEffectObserver)
+        viewModel.websitesLiveData.observe(viewLifecycleOwner, listObserver)
+        viewModel.sideEffectLiveData.observe(viewLifecycleOwner, sideEffectObserver)
 
     }
 
