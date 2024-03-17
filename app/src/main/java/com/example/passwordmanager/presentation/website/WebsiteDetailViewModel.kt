@@ -51,7 +51,7 @@ class WebsiteDetailViewModel @Inject constructor(
         val icon = "$url/favicon.ico"
         val newWebsite = Website(url, name, password, icon)
         if (website == null) {
-            if (name.isBlank() && url.isBlank()) {
+            if (name.isBlank() || url.isBlank()) {
                 _sideEffectLiveData.value = NoNameAndUrlAddToWebsite
             } else {
                 websiteRepository.saveWebsite(KEY, newWebsite)
@@ -62,7 +62,6 @@ class WebsiteDetailViewModel @Inject constructor(
         }
     }
     private fun onEditWebsite(newWebsite: Website) {
-       // val icon = "${newWebsite?.url}/favicon.ico"
         val updateListWebsites = websiteRepository.getWebsites(KEY).toMutableList()
         val position = updateListWebsites.indexOf(website)
         updateListWebsites[position] = newWebsite
