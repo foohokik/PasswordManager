@@ -7,4 +7,13 @@
     <string name="prompt_info_description">Приложение использует аутентификацию по отпечатку пальца</string>
     <string name="prompt_info_use_app_password">Use app password</string>
     <string name="secret_key_name">biometric_sample_encryption_key</string>
+    <string name="authentication_error">Код ошибки: %1$d , описание: %2$s</string>
+    <string name="authentication_failed">Аутентификация не удалась</string>
+    <string name="authentication_succeeded">Аутентификация успешна</string>
+    <string name="website_item_tv_name">Название сайта</string>
+    <string name="website_item_tv_url">Адрес сайта</string>
+    <string name="website_detail_name">Название сайта</string>
+    <string name="website_detail_url">Адрес сайта</string>
+    <string name="website_detail_pass">Пароль</string>
+    <string name="website_detail_toast">Добавьте название и адрес сайта!</string>
 </resources>

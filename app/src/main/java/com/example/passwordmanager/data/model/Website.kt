@@ -1,4 +1,4 @@
-package com.example.passwordmanager.data
+package com.example.passwordmanager.data.model
 
 import java.io.Serializable
 

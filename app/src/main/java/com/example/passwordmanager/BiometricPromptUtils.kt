@@ -7,7 +7,6 @@ import androidx.biometric.BiometricPrompt
 import androidx.core.content.ContextCompat
 
 object BiometricPromptUtils {
-    private const val TAG = "BiometricPromptUtils"
     fun createBiometricPrompt(
         activity: AppCompatActivity,
         processSuccess: (BiometricPrompt.AuthenticationResult) -> Unit
@@ -19,21 +18,24 @@ object BiometricPromptUtils {
             override fun onAuthenticationError(errCode: Int, errString: CharSequence) {
                 super.onAuthenticationError(errCode, errString)
                 Toast.makeText(activity.applicationContext,
-                    "errCode is $errCode and errString is: $errString", Toast.LENGTH_SHORT)
+                    activity.getString(R.string.authentication_error, errCode, errString)
+                    , Toast.LENGTH_SHORT)
                     .show()
             }
 
             override fun onAuthenticationFailed() {
                 super.onAuthenticationFailed()
                 Toast.makeText(activity.applicationContext,
-                    "Authentication failed", Toast.LENGTH_SHORT)
+                    activity.getString(R.string.authentication_failed),
+                    Toast.LENGTH_SHORT)
                     .show()
             }
 
             override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
                 super.onAuthenticationSucceeded(result)
                 Toast.makeText(activity.applicationContext,
-                    "Authentication succeeded!", Toast.LENGTH_SHORT)
+                    activity.getString(R.string.authentication_succeeded),
+                    Toast.LENGTH_SHORT)
                     .show()
                 processSuccess(result)
 

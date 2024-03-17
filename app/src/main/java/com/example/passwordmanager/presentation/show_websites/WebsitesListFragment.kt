@@ -1,7 +1,6 @@
 package com.example.passwordmanager.presentation.show_websites
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.passwordmanager.R
-import com.example.passwordmanager.data.Website
+import com.example.passwordmanager.data.model.Website
 import com.example.passwordmanager.databinding.FragmentWebsitesListBinding
 import com.example.passwordmanager.presentation.show_websites.adapter.WebSitesAdapter
 import com.example.passwordmanager.presentation.website.WebsiteDetailFragment
@@ -21,16 +20,8 @@ class WebsitesListFragment : Fragment() {
 
     private var _binding: FragmentWebsitesListBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var adapter: WebSitesAdapter
-
     private val viewModel: WebsitesListViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,8 +39,10 @@ class WebsitesListFragment : Fragment() {
         binding.btnAdd.setOnClickListener {
             parentFragmentManager
                 .beginTransaction()
-                .replace(R.id.fragment_container_view, WebsiteDetailFragment
-                    .newInstance(null))
+                .replace(
+                    R.id.fragment_container_view, WebsiteDetailFragment
+                        .newInstance(null)
+                )
                 .addToBackStack(null)
                 .commit()
         }
@@ -75,15 +68,12 @@ class WebsitesListFragment : Fragment() {
             adapter.setItems(items)
         }
 
-
         val sideEffectObserver = Observer<Website> {
-
             parentFragmentManager
                 .beginTransaction()
                 .replace(R.id.fragment_container_view, WebsiteDetailFragment.newInstance(it))
                 .addToBackStack(null)
                 .commit()
-
         }
 
         viewModel.websitesLiveData.observe(viewLifecycleOwner, listObserver)
