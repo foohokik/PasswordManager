@@ -50,6 +50,7 @@ dependencies {
     //crypto
 
     implementation ("androidx.security:security-crypto-ktx:1.1.0-alpha06")
+    implementation ("androidx.biometric:biometric:1.1.0")
 
 
     //Gson

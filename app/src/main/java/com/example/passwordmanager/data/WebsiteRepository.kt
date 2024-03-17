@@ -1,6 +1,8 @@
 package com.example.passwordmanager.data
 
 import android.content.SharedPreferences
+import android.util.Log
+import androidx.core.content.edit
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
@@ -15,20 +17,25 @@ class WebsiteRepository @Inject constructor (
 
     fun saveWebsite (masterKey: String, website: Website) {
 
-        service.setWebsite(website)
-        val json = gson.toJson(service.getWebsites())
-        encryptedSharedPrefs.edit()
-            .putString(masterKey,json)
-            .apply()
+            val updateList = listOf<Website>(website).plus(getWebsites(masterKey))
+            val json = gson.toJson(updateList)
+            encryptedSharedPrefs.edit().putString(masterKey, json).apply()
+
+    }
+
+    fun updateWebsites (masterKey: String, listWebsites: List<Website>) {
+
+        val json = gson.toJson(listWebsites)
+        encryptedSharedPrefs.edit().putString(masterKey, json).apply()
 
     }
 
 
     fun getWebsites (masterKey: String): List<Website> {
 
-        val value = encryptedSharedPrefs.getString(masterKey,"[]")
-        val type: Type = object : TypeToken<ArrayList<Website?>?>() {}.type
-        return gson.fromJson(value, type)
+        val value = encryptedSharedPrefs.getString(masterKey, null)
+        val type: Type = object : TypeToken<List<Website?>?>() {}.type
+        return gson.fromJson<List<Website>?>(value, type).orEmpty()
 
     }
 

@@ -44,11 +44,12 @@ class WebsitesListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         observe()
+
         binding.btnAdd.setOnClickListener {
-            Log.d("TRANS", "BTN")
             parentFragmentManager
                 .beginTransaction()
-                .replace(R.id.fragment_container_view, WebsiteDetailFragment.newInstance(Website("","","","")))
+                .replace(R.id.fragment_container_view, WebsiteDetailFragment
+                    .newInstance(null))
                 .addToBackStack(null)
                 .commit()
         }

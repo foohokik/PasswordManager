@@ -1,5 +1,6 @@
 package com.example.passwordmanager.presentation.show_websites
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
@@ -36,29 +37,10 @@ class WebsitesListViewModel @Inject constructor(
 
         _websitesLiveData.value = websiteRepository.getWebsites(masterKey)
 
+
     }
 
 
-//    fun onAddWebsiteToSharPrefs(name: String, url: String, password: String, icon: String) {
-//        val newWebsite = Website(name, url, password, icon)
-//        val jsonString = gson.toJson(newWebsite)
-//        websiteRepository.saveWebsite(url, jsonString)
-//    }
-//
-//    fun onAddWebsite(name: String, url: String, password: String, icon: String) {
-//        val newWebsites = mutableListOf<Website>()
-//        websitesLiveData.value?.let { newWebsites.addAll(it) }
-//        _websitesLiveData.value = newWebsites
-//    }
-
-//    fun onEditContact(id:Int, name: String, surname: String, number: String, position: Int) {
-//        val newContact = Contact(id, name, surname, number)
-//        val newPeople = mutableListOf<Contact>()
-//        peopleLiveData.value?.let { newPeople.addAll(it) }
-//        newPeople.removeAt(position)
-//        newPeople.add(position, newContact)
-//        _peopleLiveData.value = newPeople
-//    }
 
     override fun onClickWebsite(website: Website) {
         _sideEffectLiveData.value = website
